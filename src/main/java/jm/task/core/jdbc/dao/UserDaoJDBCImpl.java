@@ -50,6 +50,7 @@ public class UserDaoJDBCImpl implements UserDao {
             preparedStatement.setByte(3, age);
 
             preparedStatement.executeUpdate();
+            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -97,6 +98,7 @@ public class UserDaoJDBCImpl implements UserDao {
              Statement statement = connection.createStatement()) {
 
             statement.executeUpdate("DELETE FROM USERS");
+            connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
         }
