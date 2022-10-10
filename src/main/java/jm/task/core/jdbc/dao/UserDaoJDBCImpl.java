@@ -49,7 +49,12 @@ public class UserDaoJDBCImpl implements UserDao {
             preparedStatement.setString(2, lastName);
             preparedStatement.setByte(3, age);
 
-            preparedStatement.executeUpdate();
+            int status = preparedStatement.executeUpdate();
+            if (status > 0) {
+                System.out.println("Successfully Inserted");
+            } else {
+                System.out.println("Insert Failed");
+            }
             connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();
@@ -97,7 +102,12 @@ public class UserDaoJDBCImpl implements UserDao {
         try (Connection connection = util.getConnection();
              Statement statement = connection.createStatement()) {
 
-            statement.executeUpdate("DELETE FROM USERS");
+            int status = statement.executeUpdate("DELETE FROM USERS");
+            if (status > 0) {
+                System.out.println("Successfully cleaned");
+            } else {
+                System.out.println("Clean Failed");
+            }
             connection.commit();
         } catch (SQLException e) {
             e.printStackTrace();

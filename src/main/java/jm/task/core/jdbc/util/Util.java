@@ -1,5 +1,7 @@
 package jm.task.core.jdbc.util;
 
+import org.hibernate.SessionFactory;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -11,6 +13,9 @@ public class Util {
     private static final String USER = "root";
     private static final String PASSWORD = "root";
     private static volatile Util instance;
+
+    //Hibernate
+    private static SessionFactory sessionFactory;
 
     private Util() {
 
