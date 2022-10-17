@@ -8,16 +8,13 @@ import java.util.Objects;
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ID")
     private Long id;
 
-    @Column(name = "NAME")
     private String name;
 
-    @Column(name = "LASTNAME")
     private String lastName;
 
-    @Column(name = "AGE")
+    @Column(length = 3)
     private Byte age;
 
     public User() {
