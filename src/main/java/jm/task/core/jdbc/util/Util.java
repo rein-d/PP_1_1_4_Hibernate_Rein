@@ -14,7 +14,7 @@ import java.util.Properties;
 
 public class Util {
     // реализуйте настройку соеденения с БД
-    private static final String DB_DRIVER = "com.mysql.cj.jdbc.Driver";
+    private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
     private static final String DB_URL = "jdbc:mysql://localhost:3306/mydb";
     private static final String USER = "root";
     private static final String PASSWORD = "root";
@@ -27,22 +27,23 @@ public class Util {
 
     }
 
-    public static SessionFactory getSessionFactory() {
+    public SessionFactory getSessionFactory() {
         if (sessionFactory == null) {
             try {
                 Configuration configuration = new Configuration();
 
                 // Hibernate settings equivalent to hibernate.cfg.xml's properties
                 Properties settings = new Properties();
-                settings.put(Environment.DRIVER, DB_DRIVER);
                 settings.put(Environment.URL, DB_URL);
                 settings.put(Environment.USER, USER);
                 settings.put(Environment.PASS, PASSWORD);
 
+                settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQLDialect");
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.FORMAT_SQL, "true");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
                 settings.put(Environment.HBM2DDL_AUTO, "create-drop");
+                settings.put(Environment.AUTOCOMMIT, "false");
 
                 configuration.setProperties(settings);
 
