@@ -14,7 +14,6 @@ import java.util.Properties;
 
 public class Util {
     // реализуйте настройку соеденения с БД
-    private static final String DB_DRIVER = "com.mysql.jdbc.Driver";
     private static final String DB_URL = "jdbc:mysql://localhost:3306/mydb";
     private static final String USER = "root";
     private static final String PASSWORD = "root";
@@ -42,7 +41,7 @@ public class Util {
                 settings.put(Environment.SHOW_SQL, "true");
                 settings.put(Environment.FORMAT_SQL, "true");
                 settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
-                settings.put(Environment.HBM2DDL_AUTO, "create-drop");
+                //settings.put(Environment.HBM2DDL_AUTO, "create-drop");
                 settings.put(Environment.AUTOCOMMIT, "false");
 
                 configuration.setProperties(settings);
@@ -69,19 +68,5 @@ public class Util {
             }
         }
         return instance;
-    }
-
-    public Connection getConnection() {
-        Connection connection = null;
-        try {
-            Class.forName(DB_DRIVER);
-            connection = DriverManager.getConnection(DB_URL, USER, PASSWORD);
-            connection.setAutoCommit(false);
-            System.out.println("Connected");
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace();
-            System.out.println("Connection Error");
-        }
-        return connection;
     }
 }
